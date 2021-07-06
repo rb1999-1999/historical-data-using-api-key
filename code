@@ -1,0 +1,20 @@
+from kiteconnect import KiteConnect
+import pandas as pd 
+from datetime import datetime , timedelta
+
+from kiteconnect import exceptions
+ak='your api key'
+asecret='your secret api key'
+kite=KiteConnect(api_key=ak)
+requst_tkn=input("[*] enter the requst token here:")
+data= kite.generate_session(requst_tkn,api_secret=asecret)
+kite.set_access_token(data["access_token"])
+print(data['access_token'])
+trd_portfolio={'stock name ':{'token':stock token}}
+token=stock token
+to_date= datetime.now()
+from_date=to_date-timedelta(days=60)
+interval="minute"
+record = kite.historical_data(token, from_date, to_date, interval)
+df = pd.DataFrame(record)
+df.to_csv("historicaldata.csv")
